@@ -1,0 +1,23 @@
+vector<long long> printFirstNegativeInteger(long long int A[],long long int N, long long int K) {
+                                 
+          long long i=0;
+ long long j=0;
+ vector<long long> ans;
+ list<long long> l;
+  while (j<N){
+    if (A[j]<0) 
+      l.push_back(A[j]);
+    if (j-i+1<K) j++;
+    else if ((j-i+1)==K)
+    {
+      if (l.size()==0)
+        ans.push_back(0);
+      else
+        ans.push_back(l.front());
+      if(A[i]<0) # there we remove from the list if it lies in negative no previous window then we need to pop them 
+        l.pop_front();# and then another font is the first negative no of another window 
+      i++;
+      j++;
+    }
+  }
+  return ans;
