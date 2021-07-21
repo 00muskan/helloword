@@ -1,0 +1,40 @@
+// https://www.geeksforgeeks.org/count-of-subsets-with-sum-equal-to-x/
+
+#include <iostream>
+
+using namespace std;
+int   CountSubsets(int arr[],int sum,int n){
+     int t[n + 1][sum + 1]; 
+    for(int i=0;i<=n;i++){
+        for(int j=0;j<=sum;j++){
+            if(i==0)
+            return 0;
+            if(j==0)
+            return 1;
+        }
+    }
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=sum;j++){
+            if(arr[i-1]<=j)
+            t[i][j]=t[i-1][j-arr[i-1]]+t[i-1][j];
+            else
+            t[i][j]=t[i-1][j];
+        }
+    }
+    return t[n][sum];
+}
+int main()
+{
+   int n; cin >> n;
+	int arr[n];
+	for (int i = 0; i < n; i++)
+		cin >> arr[i];
+	int sum; cin >> sum;
+
+	cout << CountSubsets(arr, n, sum) << endl;
+	return 0;
+}
+/*
+Time Complexity: O(sum*n), where the sum is the ‘target sum’ and ‘n’ is the size of the array.
+Auxiliary Space: O(sum*n), as the size of the 2-D array, is sum*n. 
+*/
